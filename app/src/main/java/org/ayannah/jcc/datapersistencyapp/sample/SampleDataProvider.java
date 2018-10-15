@@ -11,12 +11,12 @@ public class SampleDataProvider {
     public static List<DataItem> dataItemList;
     public static HashMap<String,DataItem> dataItemHashMap;
 
+
     static {
         dataItemList = new ArrayList<>();
         dataItemHashMap = new HashMap<>();
 
-        addItem(new DataItem(null,
-                "Quinoa Salmon Salad", "Salads",
+        addItem(new DataItem(null, "Quinoa Salmon Salad", "Salads",
                 "Our quinoa salad is served with quinoa, tomatoes, cucumber, scallions, and smoked salmon. Served with your choice of dressing.",
                 1, 12, "quinoa_salad.jpg"));
 
