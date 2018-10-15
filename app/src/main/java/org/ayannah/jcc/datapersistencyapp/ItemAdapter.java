@@ -33,19 +33,21 @@ public class ItemAdapter extends ArrayAdapter<DataItem> {
 
     @Override
     public View getView(int position,View convertView,ViewGroup parent) {
+        //check if view is null (ListView)
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.list_item,parent,false);
         }
 
+        //Initialize listview components
         TextView tvItemName = convertView.findViewById(R.id.tvItemName);
         ImageView imageView = convertView.findViewById(R.id.imageView);
 
+        //Initialize object call with current item
         DataItem item = items.get(position);
 
+        //Display textview and imageview of the item
         tvItemName.setText(item.getItemName());
-
         InputStream inputStream = null;
-
         try {
             String imageFileName = item.getImage();
             inputStream = getContext().getAssets().open(imageFileName);
@@ -63,6 +65,7 @@ public class ItemAdapter extends ArrayAdapter<DataItem> {
             }
         }
 
+        //return view for usage
         return convertView;
     }
 }
