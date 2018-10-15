@@ -17,12 +17,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class ItemAdapter extends ArrayAdapter<DataItem> {
+public class ItemAdapterListView extends ArrayAdapter<DataItem> {
 
     private List<DataItem> items;
     private LayoutInflater layoutInflater;
 
-    public ItemAdapter(Context context,List<DataItem> objects) {
+    public ItemAdapterListView(Context context, List<DataItem> objects) {
         super(context, R.layout.list_item, objects);
 
 

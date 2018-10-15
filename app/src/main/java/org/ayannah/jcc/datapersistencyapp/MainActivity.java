@@ -2,16 +2,13 @@ package org.ayannah.jcc.datapersistencyapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import org.ayannah.jcc.datapersistencyapp.model.DataItem;
 import org.ayannah.jcc.datapersistencyapp.sample.SampleDataProvider;
-import org.w3c.dom.Text;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -33,11 +30,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //create a new adapter with your own customize adapter
-        ItemAdapter adapter = new ItemAdapter(this,dataItemList);
+//        ItemAdapterListView adapter = new ItemAdapterListView(this,dataItemList);
+        ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this, dataItemList);
 
         //Initialize listview and set adapter
-        ListView listView = findViewById(R.id.lv_items);
-        listView.setAdapter(adapter);
+//        ListView listView = findViewById(R.id.lv_items);
+        RecyclerView recyclerView = findViewById(R.id.rv_items);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
     }
 }
