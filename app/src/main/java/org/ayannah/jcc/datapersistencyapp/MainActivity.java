@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         DataItem dataItem = new DataItem();
         tvOut = findViewById(R.id.tv_out);
         tvOut.setText(dataItem.toString());
