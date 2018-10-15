@@ -1,6 +1,7 @@
 package org.ayannah.jcc.datapersistencyapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class ItemAdapterRecyclerView extends RecyclerView.Adapter<ItemAdapterRecyclerView.ViewHolder> {
 
+    public static final String ITEM_ID_KEY = "item_id_key";
     private List<DataItem> mItems;
     private Context mContext;
 
@@ -49,20 +51,17 @@ public class ItemAdapterRecyclerView extends RecyclerView.Adapter<ItemAdapterRec
             e.printStackTrace();
         }
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        holder.singleItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "You selected " + item.getItemName(),Toast.LENGTH_SHORT).show();
+                String itemId = item.getItemId();
+                Intent intent = new Intent(mContext,DetailActivity.class);
+                intent.putExtra(ITEM_ID_KEY, itemId);
+                mContext.startActivity(intent);
             }
         });
 
-        holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(mContext,"You long clicked " + item.getItemName(),Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
+
     }
 
     @Override
@@ -74,14 +73,15 @@ public class ItemAdapterRecyclerView extends RecyclerView.Adapter<ItemAdapterRec
 
         public TextView tvName;
         public ImageView imageView;
-        public View mView;
+        public View singleItem;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             tvName = (TextView) itemView.findViewById(R.id.tvItemName);
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            mView = itemView;
+
+            singleItem = itemView;
         }
     }
 }
