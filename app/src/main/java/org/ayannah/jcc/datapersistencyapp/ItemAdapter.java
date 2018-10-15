@@ -1,6 +1,7 @@
 package org.ayannah.jcc.datapersistencyapp;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,32 +13,55 @@ import android.widget.TextView;
 
 import org.ayannah.jcc.datapersistencyapp.model.DataItem;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class ItemAdapter extends ArrayAdapter<DataItem> {
-    private List<DataItem> dataItems;
+
+    private List<DataItem> items;
     private LayoutInflater layoutInflater;
 
-    public ItemAdapter(Context context, List<DataItem> objects) {
+    public ItemAdapter(Context context,List<DataItem> objects) {
         super(context, R.layout.list_item, objects);
 
-        dataItems = objects;
+
+        items = objects;
         layoutInflater = LayoutInflater.from(context);
     }
 
-    @NonNull
+
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position,View convertView,ViewGroup parent) {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.list_item,parent,false);
         }
-        TextView tvName = convertView.findViewById(R.id.tvItemName);
+
+        TextView tvItemName = convertView.findViewById(R.id.tvItemName);
         ImageView imageView = convertView.findViewById(R.id.imageView);
 
-        DataItem item = dataItems.get(position);
+        DataItem item = items.get(position);
 
-        tvName.setText(item.getItemName());
-        imageView.setImageResource(R.drawable.apple_pie);
+        tvItemName.setText(item.getItemName());
+
+        InputStream inputStream = null;
+
+        try {
+            String imageFileName = item.getImage();
+            inputStream = getContext().getAssets().open(imageFileName);
+            Drawable d = Drawable.createFromStream(inputStream,null);
+            imageView.setImageDrawable(d);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (inputStream != null){
+                    inputStream.close();
+                }
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
 
         return convertView;
     }
