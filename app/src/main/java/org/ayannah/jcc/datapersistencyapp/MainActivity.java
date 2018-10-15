@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import org.ayannah.jcc.datapersistencyapp.model.DataItem;
 import org.ayannah.jcc.datapersistencyapp.sample.SampleDataProvider;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,30 +18,26 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private List<DataItem> dataItemList = SampleDataProvider.dataItemList;
-    private List<String> itemStrings = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Collections.sort(dataItemList, new Comparator<DataItem>() {
+            @Override
+            public int compare(DataItem o1, DataItem o2) {
+                return o1.getItemName().compareTo(o2.getItemName());
+            }
+        });
 
-        for (DataItem item: dataItemList) {
-            itemStrings.add(item.getItemName());
-        }
-
-        Collections.sort(itemStrings);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                itemStrings);
-
+        ItemAdapter adapter = new ItemAdapter(this,dataItemList);
 
         ListView listView = findViewById(R.id.lv_items);
         listView.setAdapter(adapter);
+
+
 
 
     }
