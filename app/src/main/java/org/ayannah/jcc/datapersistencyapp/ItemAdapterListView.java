@@ -25,7 +25,6 @@ public class ItemAdapterListView extends ArrayAdapter<DataItem> {
     public ItemAdapterListView(Context context, List<DataItem> objects) {
         super(context, R.layout.list_item, objects);
 
-
         items = objects;
         layoutInflater = LayoutInflater.from(context);
     }

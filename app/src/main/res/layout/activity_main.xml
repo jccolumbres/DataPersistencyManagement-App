@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     tools:context=".MainActivity">
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_items"
         android:layout_width="match_parent"

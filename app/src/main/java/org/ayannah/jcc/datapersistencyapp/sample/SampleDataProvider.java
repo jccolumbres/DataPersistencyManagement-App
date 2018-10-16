@@ -9,7 +9,7 @@ import java.util.List;
 public class SampleDataProvider {
 
     public static List<DataItem> dataItemList;
-    public static HashMap<String,DataItem> dataItemHashMap;
+    public static HashMap<String, DataItem> dataItemHashMap;
 
 
     static {
@@ -108,10 +108,11 @@ public class SampleDataProvider {
     }
 
 
-
     public static void addItem(DataItem item){
         dataItemList.add(item);
-        dataItemHashMap.put(item.getItemId(),item);
+        dataItemHashMap.put(item.getItemId(), item);
     }
 
 }
+
+
