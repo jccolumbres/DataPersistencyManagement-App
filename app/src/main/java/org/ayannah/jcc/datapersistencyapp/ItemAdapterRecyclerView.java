@@ -61,8 +61,6 @@ public class ItemAdapterRecyclerView extends RecyclerView.Adapter<ItemAdapterRec
                 mContext.startActivity(intent);
             }
         });
-
-
     }
 
     @Override
