@@ -1,6 +1,7 @@
 package org.ayannah.jcc.datapersistencyapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final int SIGNIN_REQUEST = 1001;
+    public static final String GLOBAL_KEYS = "global_keys";
     List<DataItem> dataItemList = SampleDataProvider.dataItemList;
 
     @Override
@@ -64,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == SIGNIN_REQUEST) {
             String email = data.getStringExtra(SigninActivity.EMAIL_KEY);
             Toast.makeText(this, "You signed in as " + email, Toast.LENGTH_SHORT).show();
+
+            SharedPreferences.Editor editor =
+                    getSharedPreferences(GLOBAL_KEYS, MODE_PRIVATE).edit();
+            editor.putString(SigninActivity.EMAIL_KEY, email);
+            editor.apply();
         }
 
     }
