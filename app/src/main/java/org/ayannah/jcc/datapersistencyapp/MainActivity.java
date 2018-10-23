@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -22,15 +23,24 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static String TAG = MainActivity.class.getSimpleName();
+
     private static final int SIGNIN_REQUEST = 1001;
     public static final String GLOBAL_KEYS = "global_keys";
-    List<DataItem> dataItemList = SampleDataProvider.dataItemList;
+    private List<DataItem> dataItemList = SampleDataProvider.dataItemList;
+    private SharedPreferences.OnSharedPreferenceChangeListener prefListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+                Log.i("Preferences","SharedPref Key: " + s);
+            }
+        };
         Collections.sort(dataItemList, new Comparator<DataItem>() {
             @Override
             public int compare(DataItem o1, DataItem o2) {
@@ -40,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this, dataItemList);
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         boolean grid = settings.getBoolean(getString(R.string.pref_display_grid), false);
+        settings.registerOnSharedPreferenceChangeListener(prefListener);
 
         RecyclerView recyclerView = findViewById(R.id.rv_items);
         if (grid) {
