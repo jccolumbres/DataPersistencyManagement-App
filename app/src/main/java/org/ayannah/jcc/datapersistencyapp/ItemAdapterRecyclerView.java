@@ -2,7 +2,9 @@ package org.ayannah.jcc.datapersistencyapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,8 +34,14 @@ public class ItemAdapterRecyclerView extends RecyclerView.Adapter<ItemAdapterRec
 
     @Override
     public ItemAdapterRecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
+        boolean grid =
+                settings.getBoolean(mContext.getString(R.string.pref_display_grid), false);
+        int layoutId = grid ? R.layout.grid_item : R.layout.list_item;
+
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View itemView = inflater.inflate(R.layout.list_item, parent, false);
+
+        View itemView = inflater.inflate(layoutId, parent, false);
         ViewHolder viewHolder = new ViewHolder(itemView);
         return viewHolder;
     }

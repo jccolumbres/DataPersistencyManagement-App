@@ -38,17 +38,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this, dataItemList);
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         boolean grid = settings.getBoolean(getString(R.string.pref_display_grid), false);
-        ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this, dataItemList);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_items);
-        if (grid){
+        RecyclerView recyclerView = findViewById(R.id.rv_items);
+        if (grid) {
             recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        }else{
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
-
         recyclerView.setAdapter(adapter);
     }
 
@@ -68,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_settings:
                 Intent settingsIntent = new Intent(this, PrefsActivity.class);
                 startActivity(settingsIntent);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

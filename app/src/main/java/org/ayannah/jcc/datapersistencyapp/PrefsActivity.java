@@ -1,5 +1,6 @@
 package org.ayannah.jcc.datapersistencyapp;
 
+import android.content.Intent;
 import android.preference.PreferenceFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -31,4 +32,10 @@ public class PrefsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
 }
