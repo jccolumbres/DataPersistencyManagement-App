@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //checkPermissions();
+        checkPermissions();
 
         prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
@@ -90,7 +90,12 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.action_export:
-                //boolean result
+                boolean result = JSONHelper.exportToJSON(this, dataItemList);
+                if (result){
+                    Toast.makeText(this, "Data exported", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+                }
                 return true;
             case R.id.action_import:
                 return true;
