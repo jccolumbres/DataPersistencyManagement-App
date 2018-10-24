@@ -89,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(settingsIntent);
                 finish();
                 return true;
+            case R.id.action_export:
+                //boolean result
+                return true;
+            case R.id.action_import:
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
