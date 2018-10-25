@@ -98,6 +98,22 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             case R.id.action_import:
+                List<DataItem> dataItems = JSONHelper.importFromJSON(this);
+                if (dataItems!=null){
+                    for (DataItem dataItem : dataItems) {
+                        Toast.makeText(this, "Data imported", Toast.LENGTH_SHORT).show();
+                        Log.i(TAG,"Imported item: " + dataItem.getItemName());
+                    }
+                }else{
+                    Toast.makeText(this, "Not existing", Toast.LENGTH_SHORT).show();
+                }   
+            case R.id.action_delete:
+                boolean output = JSONHelper.deleteJSONFile();
+                if (output){
+                    Toast.makeText(this, "File deleted", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "File not existing", Toast.LENGTH_SHORT).show();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);
