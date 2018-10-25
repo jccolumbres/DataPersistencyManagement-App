@@ -22,4 +22,7 @@
 
     <string name="action_export">Export</string>
     <string name="action_import">Import</string>
+
+    <string name="action_import_raw">Import Raw</string>
+
 </resources>

@@ -25,4 +25,8 @@
         android:id="@+id/action_delete"
         android:title="Delete"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_import_raw"
+        android:title="@string/action_import_raw"
+        app:showAsAction="ifRoom" />
 </menu>

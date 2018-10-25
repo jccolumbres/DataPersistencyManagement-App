@@ -1,0 +1,202 @@
+{
+  "dataItems": [
+    {
+      "category": "Made with local granny smith apples to bring you the freshest classic apple pie available.",
+      "description": "Desserts",
+      "image": "apple_pie.jpg",
+      "itemId": "3db48a30-e28b-47da-bee8-79c97d508c84",
+      "itemName": "Apple Pie",
+      "price": 5.0,
+      "sortPosition": 4
+    },
+    {
+      "category": "Our artichokes are brushed with an olive oil and rosemary blend and then broiled to perfection. Served with a side of creamy garlic aioli.",
+      "description": "Starters",
+      "image": "artichokes.jpg",
+      "itemId": "bf3968ff-28fd-4bce-8481-9a7f2481127f",
+      "itemName": "Artichokes with Garlic Aeoli",
+      "price": 9.0,
+      "sortPosition": 4
+    },
+    {
+      "category": "Our barbecued skewers include tofu, cherry tomatoes, bell peppers, and zucchini marinated in a ginger sesame sauce and charbroiled. Served with steamed rice.",
+      "description": "Entrees",
+      "image": "tofu_skewers.jpg",
+      "itemId": "ff75efc1-e723-40a5-8b98-7958bc89d9b1",
+      "itemName": "Barbecued Tofu Skewers",
+      "price": 10.0,
+      "sortPosition": 4
+    },
+    {
+      "category": "Our house blend of espresso and foamed milk. Can be served with flavored syrups and over ice.  Non-dairy substitutions available upon request.",
+      "description": "Drinks",
+      "image": "cafe_latte.jpg",
+      "itemId": "a3cfab7e-e6e1-4ec6-bfe3-fd695f485928",
+      "itemName": "Café Latte",
+      "price": 6.0,
+      "sortPosition": 3
+    },
+    {
+      "category": "Our New York Style Cheesecake is rich, smooth, and creamy. Available in various flavors, and with seasonal fruit toppings.",
+      "description": "Desserts",
+      "image": "cheesecake.jpg",
+      "itemId": "b1ac91b2-f97f-4595-b3ba-4008ded72d8a",
+      "itemName": "Cheesecake",
+      "price": 9.0,
+      "sortPosition": 2
+    },
+    {
+      "category": "The chef’s salad has cucumber, tomatoes, red onions, mushrooms, hard-boiled eggs, cheese, and hot grilled chicken on a bed of romaine lettuce. Served with croutons and your choice of dressing.",
+      "description": "Salads",
+      "image": "chef_salad.jpg",
+      "itemId": "3fc5fcf8-f87c-473f-9bda-72a28f8429dd",
+      "itemName": "Chef\u0027s Salad",
+      "price": 9.0,
+      "sortPosition": 2
+    },
+    {
+      "category": "A warm chocolate chip brownie served with chocolate or vanilla ice cream and rich chocolate sauce.",
+      "description": "Desserts",
+      "image": "brownie.jpg",
+      "itemId": "eba96208-7346-48e4-8213-b17592c61be3",
+      "itemName": "Chocolate Chip Brownie ",
+      "price": 6.0,
+      "sortPosition": 3
+    },
+    {
+      "category": "Our classic burger is made with 100% pure angus beef, served with lettuce, tomatoes, onions, pickles, and cheese of your choice. Veggie burger available upon request. Served with French fries, fresh fruit, or a side salad.",
+      "description": "Entrees",
+      "image": "classic_burger.jpg",
+      "itemId": "da795571-2c95-4605-9c67-fd410d187109",
+      "itemName": "Classic Burger",
+      "price": 10.0,
+      "sortPosition": 1
+    },
+    {
+      "category": "Elegantly crafted creamy vanilla custard with a caramelized crunchy layer on top. Served with seasonal fruit.",
+      "description": "Desserts",
+      "image": "creme_brulee.jpg",
+      "itemId": "dbe0b298-0256-403b-b0e4-69ceb9cd66eb",
+      "itemName": "Crème Brûlée",
+      "price": 9.0,
+      "sortPosition": 1
+    },
+    {
+      "category": "This platter is perfect for sharing! Enjoy our spicy buffalo wings, traditional nachos, and cheese quesadillas served with freshly made guacamole dip.",
+      "description": "Entrees",
+      "image": "fiesta_platter.jpg",
+      "itemId": "e40adaee-c172-4469-8d80-b4c11d839562",
+      "itemName": "Fiesta Family Platter",
+      "price": 16.0,
+      "sortPosition": 5
+    },
+    {
+      "category": "Caramelized onions slow cooked in a savory broth, topped with sourdough and a provolone cheese blend. Served with sourdough bread.",
+      "description": "Starters",
+      "image": "french_onion_soup.jpg",
+      "itemId": "12bf1c78-92b4-492a-91cf-f5a2e9955c95",
+      "itemName": "French Onion Soup",
+      "price": 7.0,
+      "sortPosition": 3
+    },
+    {
+      "category": "Choose from our fresh local, organically grown ingredients to make a custom salad.",
+      "description": "Salads",
+      "image": "",
+      "itemId": "124b9705-6e1f-4f0b-8afd-c46c933934eb",
+      "itemName": "Garden Buffet",
+      "price": 10.0,
+      "sortPosition": 4
+    },
+    {
+      "category": "Our thin crust pizzas are made fresh daily and topped with your choices of fresh meats, veggies, cheese, and sauce.  Price includes two toppings. Add $1 for each additional topping.",
+      "description": "Entrees",
+      "image": "pizza.jpg",
+      "itemId": "53b0ad87-56cf-4f72-8ed3-4ecaeb88aab9",
+      "itemName": "Handcrafted Pizza",
+      "price": 10.0,
+      "sortPosition": 3
+    },
+    {
+      "category": "Our house salad is made with romaine lettuce and spinach, topped with tomatoes, cucumbers, red onions and carrots. Served with a dressing of your choice.",
+      "description": "Salads",
+      "image": "house_salad.jpg",
+      "itemId": "a001fee6-2f6b-4f31-b110-44086bc381f5",
+      "itemName": "House Salad",
+      "price": 7.0,
+      "sortPosition": 3
+    },
+    {
+      "category": "These mini cheeseburgers are served on a fresh baked pretzel bun with lettuce, tomato, avocado, and your choice of cheese.",
+      "description": "Starters",
+      "image": "mini_cheeseburgers.jpg",
+      "itemId": "87f810ad-02cc-4afc-af51-6bfaae1a5276",
+      "itemName": "Mini Cheeseburgers",
+      "price": 8.0,
+      "sortPosition": 1
+    },
+    {
+      "category": "Raspberries, blueberries, and strawberries on top of a creamy filling served in a crispy tart.",
+      "description": "Desserts",
+      "image": "berry_tart.jpg",
+      "itemId": "7fd4dc24-b14a-4b05-9c16-cda8ccb472b6",
+      "itemName": "Mixed Berry Tart",
+      "price": 7.0,
+      "sortPosition": 5
+    },
+    {
+      "category": "Large mushroom caps are filled a savory cream cheese, bacon and panko breadcrumb stuffing, topped with cheddar cheese.",
+      "description": "Starters",
+      "image": "stuffed_mushrooms.jpg",
+      "itemId": "6cf62d65-bd6d-4a43-a495-e6b4f9fd72db",
+      "itemName": "Panko Stuffed Mushrooms",
+      "price": 7.0,
+      "sortPosition": 2
+    },
+    {
+      "category": "SOME SAY OUR EGGS ARE DEVILISHLY GOOD. I HAVE TO AGREE.\nThese delectable little bites are made with organic eggs, fresh Parmesan, and chopped pine nuts.\"",
+      "description": "Starters",
+      "image": "deviled_eggs.jpg",
+      "itemId": "96f1a76b-c38e-420e-b30d-7ad0545b6d8e",
+      "itemName": "Parmesan Deviled Eggs",
+      "price": 8.0,
+      "sortPosition": 5
+    },
+    {
+      "category": "Our unique blend of pomegranate juice, black Rubio, and mint tea creates this light fusion of flavors.  ",
+      "description": "Drinks",
+      "image": "iced_tea.jpg",
+      "itemId": "6ac597d7-993c-4200-aeef-b5947a514615",
+      "itemName": "Pomegranate Iced Tea",
+      "price": 4.0,
+      "sortPosition": 2
+    },
+    {
+      "category": "Our quinoa salad is served with quinoa, tomatoes, cucumber, scallions, and smoked salmon. Served with your choice of dressing.",
+      "description": "Salads",
+      "image": "quinoa_salad.jpg",
+      "itemId": "61304ebe-6795-49a6-b235-31a99b2fa244",
+      "itemName": "Quinoa Salmon Salad",
+      "price": 12.0,
+      "sortPosition": 1
+    },
+    {
+      "category": "This classic cheese tortellini is cooked in a sundried tomato sauce. Served with bruschetta topped with a tomato and basil marinara.",
+      "description": "Entrees",
+      "image": "tortellini.jpg",
+      "itemId": "887c17e7-7d34-48bc-abc4-4a4e7df2ce2b",
+      "itemName": "Tomato Bruschetta Tortellini",
+      "price": 14.0,
+      "sortPosition": 2
+    },
+    {
+      "category": "This blueberry mint-based smoothie is refreshing and perfect for any celebration.",
+      "description": "Drinks",
+      "image": "smoothie.jpg",
+      "itemId": "0d66869f-d2dc-4967-a602-5328d33f6b0d",
+      "itemName": "Tropical Blue Smoothie",
+      "price": 6.0,
+      "sortPosition": 1
+    }
+  ]
+}

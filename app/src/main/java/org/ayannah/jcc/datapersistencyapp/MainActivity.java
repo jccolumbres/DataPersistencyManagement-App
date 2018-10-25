@@ -90,28 +90,37 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.action_export:
-                boolean result = JSONHelper.exportToJSON(this, dataItemList);
+                boolean result = JSONHelper.exportToJSON(this,dataItemList);
                 if (result){
                     Toast.makeText(this, "Data exported", Toast.LENGTH_SHORT).show();
-                }else{
+                }else {
                     Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case R.id.action_import:
                 List<DataItem> dataItems = JSONHelper.importFromJSON(this);
-                if (dataItems!=null){
+                if (dataItems != null) {
                     for (DataItem dataItem : dataItems) {
-                        Toast.makeText(this, "Data imported", Toast.LENGTH_SHORT).show();
-                        Log.i(TAG,"Imported item: " + dataItem.getItemName());
+                        Log.i(TAG, "Item exported: " + dataItem.getItemName());
                     }
+                }else{
+                    Toast.makeText(this, "File not existing", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            case R.id.action_delete:
+                boolean output = JSONHelper.deleteExportedFile();
+                if (output){
+                    Toast.makeText(this, "File deleted", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(this, "Not existing", Toast.LENGTH_SHORT).show();
                 }
                 return true;
-            case R.id.action_delete:
-                boolean output = JSONHelper.deleteJSONFile();
-                if (output){
-                    Toast.makeText(this, "File deleted", Toast.LENGTH_SHORT).show();
+            case R.id.action_import_raw:
+                List<DataItem> dataItemsRaw = JSONHelper.importFromResource(this);
+                if (dataItemsRaw != null) {
+                    for (DataItem dataItem : dataItemsRaw) {
+                        Log.i(TAG, "Item exportedRaw: " + dataItem.getItemName());
+                    }
                 }else{
                     Toast.makeText(this, "File not existing", Toast.LENGTH_SHORT).show();
                 }
