@@ -106,7 +106,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }else{
                     Toast.makeText(this, "Not existing", Toast.LENGTH_SHORT).show();
-                }   
+                }
+                return true;
             case R.id.action_delete:
                 boolean output = JSONHelper.deleteJSONFile();
                 if (output){
