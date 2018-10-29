@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this, dataItemList);
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         boolean grid = settings.getBoolean(getString(R.string.pref_display_grid), false);
@@ -78,6 +81,20 @@ public class MainActivity extends AppCompatActivity {
         mDataSource = new DataSource(this);
         mDataSource.open();
         Toast.makeText(this, "DATABASE ACQUIRED", Toast.LENGTH_LONG).show();
+        long itemCount = mDataSource.getDataItemListCount();
+        if (itemCount == 0) {
+            for (DataItem item :
+                    dataItemList) {
+                try {
+                    mDataSource.createItem(item);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            Toast.makeText(this, "Data saved to local database", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, "Data already inserted", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
