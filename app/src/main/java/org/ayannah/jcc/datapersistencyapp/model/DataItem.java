@@ -1,7 +1,10 @@
 package org.ayannah.jcc.datapersistencyapp.model;
 
+import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import org.ayannah.jcc.datapersistencyapp.database.ItemsTable;
 
 import java.util.UUID;
 
@@ -90,19 +93,20 @@ public class DataItem implements Parcelable {
     }
 
 
-    @Override
-    public String toString() {
-        return "DataItem{" +
-                "itemId='" + itemId + '\'' +
-                ", itemName='" + itemName + '\'' +
-                ", description='" + description + '\'' +
-                ", category='" + category + '\'' +
-                ", sortPosition=" + sortPosition +
-                ", price=" + price +
-                ", image='" + image + '\'' +
-                '}';
-    }
+    //Convert member fields to ContentValues to be use on insert in Datasource
+    public ContentValues toValues(){
+        ContentValues values = new ContentValues(); //optional parameter of putting number of member fields
+        values.put(ItemsTable.COLUMN_ID,itemId);
+        values.put(ItemsTable.COLUMN_NAME,itemName);
+        values.put(ItemsTable.COLUMN_DESCRIPTION,description);
+        values.put(ItemsTable.COLUMN_CATEGORY,category);
+        values.put(ItemsTable.COLUMN_POSITION,sortPosition);
+        values.put(ItemsTable.COLUMN_PRICE,price);
+        values.put(ItemsTable.COLUMN_IMAGE,image);
 
+        return values;
+
+    }
     @Override
     public int describeContents() {
         return 0;

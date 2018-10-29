@@ -1,7 +1,10 @@
 package org.ayannah.jcc.datapersistencyapp.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+
+import org.ayannah.jcc.datapersistencyapp.model.DataItem;
 
 public class DataSource {
 
@@ -22,5 +25,11 @@ public class DataSource {
 
     public void close(){
         mDBHelper.close();
+    }
+
+    public DataItem createItem(DataItem item){
+        ContentValues values = item.toValues();
+        mDatabase.insert(ItemsTable.TABLE_ITEMS,null,values);
+        return item;
     }
 }
