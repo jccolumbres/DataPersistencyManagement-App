@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-                Log.i("Preferences","SharedPref Key: " + s);
+                Log.i("Preferences", "SharedPref Key: " + s);
             }
         };
         Collections.sort(dataItemList, new Comparator<DataItem>() {
@@ -64,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 return o1.getItemName().compareTo(o2.getItemName());
             }
         });
-
-
 
 
         ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this, dataItemList);
@@ -80,21 +78,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         mDataSource = new DataSource(this);
         mDataSource.open();
-        Toast.makeText(this, "DATABASE ACQUIRED", Toast.LENGTH_LONG).show();
-        long itemCount = mDataSource.getDataItemListCount();
-        if (itemCount == 0) {
-            for (DataItem item :
-                    dataItemList) {
-                try {
-                    mDataSource.createItem(item);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            Toast.makeText(this, "Data saved to local database", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(this, "Data already inserted", Toast.LENGTH_LONG).show();
-        }
+        mDataSource.seedDatabase(dataItemList);
+        //Toast.makeText(this, "DATABASE ACQUIRED", Toast.LENGTH_LONG).show();
+
     }
 
     @Override
@@ -128,10 +114,10 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.action_export:
-                boolean result = JSONHelper.exportToJSON(this,dataItemList);
-                if (result){
+                boolean result = JSONHelper.exportToJSON(this, dataItemList);
+                if (result) {
                     Toast.makeText(this, "Data exported", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
                 }
                 return true;
@@ -141,15 +127,15 @@ public class MainActivity extends AppCompatActivity {
                     for (DataItem dataItem : dataItems) {
                         Log.i(TAG, "Item exported: " + dataItem.getItemName());
                     }
-                }else{
+                } else {
                     Toast.makeText(this, "File not existing", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case R.id.action_delete:
                 boolean output = JSONHelper.deleteExportedFile();
-                if (output){
+                if (output) {
                     Toast.makeText(this, "File deleted", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     Toast.makeText(this, "Not existing", Toast.LENGTH_SHORT).show();
                 }
                 return true;
@@ -159,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     for (DataItem dataItem : dataItemsRaw) {
                         Log.i(TAG, "Item exportedRaw: " + dataItem.getItemName());
                     }
-                }else{
+                } else {
                     Toast.makeText(this, "File not existing", Toast.LENGTH_SHORT).show();
                 }
                 return true;
