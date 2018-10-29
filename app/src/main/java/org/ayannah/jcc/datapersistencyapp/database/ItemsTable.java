@@ -9,6 +9,12 @@ public class ItemsTable {
     public static final String COLUMN_POSITION = "sortPosition";
     public static final String COLUMN_PRICE = "price";
     public static final String COLUMN_IMAGE = "image";
+
+
+    public static final String[] ALL_COLUMNS = {
+            COLUMN_ID,COLUMN_NAME,COLUMN_DESCRIPTION,
+            COLUMN_CATEGORY,COLUMN_POSITION,COLUMN_PRICE,COLUMN_IMAGE};
+
     public static final String SQL_CREATE =
             "CREATE TABLE " + TABLE_ITEMS + "(" +
                     COLUMN_ID + " TEXT PRIMARY KEY," +

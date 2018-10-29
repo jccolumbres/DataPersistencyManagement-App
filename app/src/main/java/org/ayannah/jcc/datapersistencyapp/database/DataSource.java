@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import org.ayannah.jcc.datapersistencyapp.model.DataItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataSource {
@@ -57,5 +58,11 @@ public class DataSource {
         } else {
             Toast.makeText(mContext, "Data already inserted", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public List<DataItem> getAllItems(){
+        List<DataItem> dataItemList = new ArrayList<>();
+
+        return dataItemList;
     }
 }
