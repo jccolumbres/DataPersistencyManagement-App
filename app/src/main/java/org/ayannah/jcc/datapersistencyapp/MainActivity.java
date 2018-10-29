@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -20,6 +22,8 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.ayannah.jcc.datapersistencyapp.database.DBHelper;
+import org.ayannah.jcc.datapersistencyapp.database.DataSource;
 import org.ayannah.jcc.datapersistencyapp.model.DataItem;
 import org.ayannah.jcc.datapersistencyapp.sample.SampleDataProvider;
 
@@ -37,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private List<DataItem> dataItemList = SampleDataProvider.dataItemList;
     private SharedPreferences.OnSharedPreferenceChangeListener prefListener;
     private boolean permissionGranted;
+
+    DataSource mDataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,21 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         }
         recyclerView.setAdapter(adapter);
+        mDataSource = new DataSource(this);
+        mDataSource.open();
+        Toast.makeText(this, "DATABASE ACQUIRED", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mDataSource.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mDataSource.open();
     }
 
     @Override
