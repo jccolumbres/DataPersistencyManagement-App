@@ -64,9 +64,12 @@ public class MainActivity extends AppCompatActivity {
                 return o1.getItemName().compareTo(o2.getItemName());
             }
         });
+        mDataSource = new DataSource(this);
+        mDataSource.open();
+        mDataSource.seedDatabase(dataItemList);
+        List<DataItem> listFromFDB = mDataSource.getAllItems();
 
-
-        ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this, dataItemList);
+        ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this, listFromFDB);
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         boolean grid = settings.getBoolean(getString(R.string.pref_display_grid), false);
         settings.registerOnSharedPreferenceChangeListener(prefListener);
@@ -76,9 +79,7 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         }
         recyclerView.setAdapter(adapter);
-        mDataSource = new DataSource(this);
-        mDataSource.open();
-        mDataSource.seedDatabase(dataItemList);
+
         //Toast.makeText(this, "DATABASE ACQUIRED", Toast.LENGTH_LONG).show();
 
     }
