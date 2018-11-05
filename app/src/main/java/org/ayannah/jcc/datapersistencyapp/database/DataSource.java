@@ -61,22 +61,24 @@ public class DataSource {
         }
     }
 
-    public List<DataItem> getAllItems(){
+    public List<DataItem> getAllItems() {
         List<DataItem> dataItemList = new ArrayList<>();
         Cursor cursor = mDatabase.query(ItemsTable.TABLE_ITEMS, ItemsTable.ALL_COLUMNS,
                 null, null, null, null, null);
 
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             DataItem item = new DataItem();
             item.setItemId(cursor.getString(cursor.getColumnIndex(ItemsTable.COLUMN_ID)));
             item.setItemName(cursor.getString(cursor.getColumnIndex(ItemsTable.COLUMN_NAME)));
             item.setCategory(cursor.getString(cursor.getColumnIndex(ItemsTable.COLUMN_CATEGORY)));
             item.setDescription(cursor.getString(cursor.getColumnIndex(ItemsTable.COLUMN_DESCRIPTION)));
-            item.setPrice(cursor.getDouble(cursor.getColumnIndex(ItemsTable.COLUMN_PRICE)));
             item.setSortPosition(cursor.getInt(cursor.getColumnIndex(ItemsTable.COLUMN_POSITION)));
-            item.setImage(cursor.getColumnName(cursor.getColumnIndex(ItemsTable.COLUMN_IMAGE)));
+            item.setPrice(cursor.getDouble(cursor.getColumnIndex(ItemsTable.COLUMN_PRICE)));
+            item.setImage(cursor.getString(cursor.getColumnIndex(ItemsTable.COLUMN_IMAGE)));
             dataItemList.add(item);
         }
+
+        //cursor.close();
         return dataItemList;
     }
 }

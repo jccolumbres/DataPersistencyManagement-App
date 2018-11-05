@@ -51,7 +51,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         checkPermissions();
-
+        mDataSource = new DataSource(this);
+        mDataSource.open();
+        mDataSource.seedDatabase(dataItemList);
+        Log.d(TAG, "onCreate: " + dataItemList);
+        List<DataItem> listFromDb = mDataSource.getAllItems();
         prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
@@ -64,12 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 return o1.getItemName().compareTo(o2.getItemName());
             }
         });
-        mDataSource = new DataSource(this);
-        mDataSource.open();
-        mDataSource.seedDatabase(dataItemList);
-        List<DataItem> listFromFDB = mDataSource.getAllItems();
-
-        ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this, listFromFDB);
+        ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this,listFromDb);
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         boolean grid = settings.getBoolean(getString(R.string.pref_display_grid), false);
         settings.registerOnSharedPreferenceChangeListener(prefListener);

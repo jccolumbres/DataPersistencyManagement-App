@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class ItemAdapterRecyclerView extends RecyclerView.Adapter<ItemAdapterRec
     public static final String ITEM_KEY = "item_key";
     private List<DataItem> mItems;
     private Context mContext;
+    public static final String TAG = ItemAdapterRecyclerView.class.getSimpleName();
 
     public ItemAdapterRecyclerView(Context context, List<DataItem> items) {
         this.mContext = context;

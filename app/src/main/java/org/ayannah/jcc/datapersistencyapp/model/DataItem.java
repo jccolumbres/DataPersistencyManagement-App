@@ -21,7 +21,7 @@ public class DataItem implements Parcelable {
     public DataItem() {
     }
 
-    public DataItem(String itemId, String itemName, String description, String category, int sortPosition, double price, String image) {
+    public DataItem(String itemId, String itemName, String category, String description,int sortPosition, double price, String image) {
 
         if (itemId == null) {
             itemId = UUID.randomUUID().toString();
@@ -98,8 +98,8 @@ public class DataItem implements Parcelable {
         ContentValues values = new ContentValues(); //optional parameter of putting number of member fields
         values.put(ItemsTable.COLUMN_ID,itemId);
         values.put(ItemsTable.COLUMN_NAME,itemName);
-        values.put(ItemsTable.COLUMN_DESCRIPTION,description);
         values.put(ItemsTable.COLUMN_CATEGORY,category);
+        values.put(ItemsTable.COLUMN_DESCRIPTION,description);
         values.put(ItemsTable.COLUMN_POSITION,sortPosition);
         values.put(ItemsTable.COLUMN_PRICE,price);
         values.put(ItemsTable.COLUMN_IMAGE,image);

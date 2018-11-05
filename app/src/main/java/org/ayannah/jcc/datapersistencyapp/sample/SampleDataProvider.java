@@ -30,7 +30,7 @@ public class SampleDataProvider {
 
         addItem(new DataItem(null, "Garden Buffet", "Salads",
                 "Choose from our fresh local, organically grown ingredients to make a custom salad.",
-                4, 10, ""));
+                4, 10, "garden_buffet.jpg"));
 
         addItem(new DataItem(null, "Mini Cheeseburgers", "Starters",
                 "These mini cheeseburgers are served on a fresh baked pretzel bun with lettuce, tomato, avocado, and your choice of cheese.",
