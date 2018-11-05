@@ -25,7 +25,6 @@ public class DataSource {
         mDatabase = mDBHelper.getWritableDatabase();
     }
 
-
     public void open() {
         mDatabase = mDBHelper.getWritableDatabase();
     }
@@ -61,11 +60,31 @@ public class DataSource {
         }
     }
 
-    public List<DataItem> getAllItems() {
-        List<DataItem> dataItemList = new ArrayList<>();
-        Cursor cursor = mDatabase.query(ItemsTable.TABLE_ITEMS, ItemsTable.ALL_COLUMNS,
-                null, null, null, null, null);
+    public String[] getCategoriesDB() {
+        ArrayList<String> categories = new ArrayList<>();
+        String[] category = {ItemsTable.COLUMN_CATEGORY};
+        Cursor cursor = mDatabase.query(true,ItemsTable.TABLE_ITEMS,category,
+                null, null, null, null, ItemsTable.COLUMN_CATEGORY + " DESC",null);
 
+        while (cursor.moveToNext()) {
+            categories.add(cursor.getString(cursor.getColumnIndex(ItemsTable.COLUMN_CATEGORY)));
+        }
+        cursor.close();
+        return categories.toArray(new String[categories.size()]);
+    }
+
+    public List<DataItem> getAllItems(String category) {
+        List<DataItem> dataItemList = new ArrayList<>();
+        Cursor cursor = null;
+
+        if (category == null) {
+            cursor = mDatabase.query(ItemsTable.TABLE_ITEMS, ItemsTable.ALL_COLUMNS,
+                    null, null, null, null, ItemsTable.COLUMN_NAME);
+        } else {
+            String[] categories = {category};
+            cursor = mDatabase.query(ItemsTable.TABLE_ITEMS, ItemsTable.ALL_COLUMNS,
+                    ItemsTable.COLUMN_CATEGORY + "=?", categories, null, null, ItemsTable.COLUMN_NAME);
+        }
         while (cursor.moveToNext()) {
             DataItem item = new DataItem();
             item.setItemId(cursor.getString(cursor.getColumnIndex(ItemsTable.COLUMN_ID)));
@@ -78,7 +97,7 @@ public class DataSource {
             dataItemList.add(item);
         }
 
-        //cursor.close();
+        cursor.close();
         return dataItemList;
     }
 }

@@ -24,5 +24,14 @@
     <string name="action_import">Import</string>
 
     <string name="action_import_raw">Import Raw</string>
+    <string name="display_all">Display all</string>
+    <string name="choose_a_category">Choose a category</string>
+    <string-array name="categories">
+        <item>Salads</item>
+        <item>Starters</item>
+        <item>Entrees</item>
+        <item>Desserts</item>
+        <item>Drinks</item>
+    </string-array>
 
 </resources>

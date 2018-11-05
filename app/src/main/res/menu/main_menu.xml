@@ -29,4 +29,13 @@
         android:id="@+id/action_import_raw"
         android:title="@string/action_import_raw"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_all_items"
+        android:title="@string/display_all"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_choose_category"
+        android:title="@string/choose_a_category"
+        app:showAsAction="ifRoom" />
 </menu>

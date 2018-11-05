@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -20,6 +21,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -43,7 +47,14 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.OnSharedPreferenceChangeListener prefListener;
     private boolean permissionGranted;
 
+    List<DataItem> listFromDb;
     DataSource mDataSource;
+
+    //For navigation and category selection
+    DrawerLayout mDrawerLayout;
+    ListView mDrawerList;
+    String[] mCategories;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +65,23 @@ public class MainActivity extends AppCompatActivity {
         mDataSource = new DataSource(this);
         mDataSource.open();
         mDataSource.seedDatabase(dataItemList);
-        Log.d(TAG, "onCreate: " + dataItemList);
-        List<DataItem> listFromDb = mDataSource.getAllItems();
+
+        //For navigation and category selection -- start
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        mCategories = mDataSource.getCategoriesDB();//getResources().getStringArray(R.array.categories);
+        mDrawerList = findViewById(R.id.left_drawer);
+        mDrawerList.setAdapter(new ArrayAdapter<>(this,
+                R.layout.drawer_list_item, mCategories));
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String category = mCategories[position];
+                displayItemsDB(category);
+                mDrawerLayout.closeDrawer(mDrawerList);
+            }
+        });
+        //For navigation and category selection -- end
+        listFromDb = mDataSource.getAllItems(null);
         prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
@@ -68,19 +94,23 @@ public class MainActivity extends AppCompatActivity {
                 return o1.getItemName().compareTo(o2.getItemName());
             }
         });
-        ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this,listFromDb);
+        ItemAdapterRecyclerView adapter = new ItemAdapterRecyclerView(this, listFromDb);
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         boolean grid = settings.getBoolean(getString(R.string.pref_display_grid), false);
         settings.registerOnSharedPreferenceChangeListener(prefListener);
 
-        RecyclerView recyclerView = findViewById(R.id.rv_items);
+        recyclerView = findViewById(R.id.rv_items);
         if (grid) {
             recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         }
-        recyclerView.setAdapter(adapter);
 
-        //Toast.makeText(this, "DATABASE ACQUIRED", Toast.LENGTH_LONG).show();
+        displayItemsDB(null);
+    }
 
+    public void displayItemsDB(String category) {
+        listFromDb = mDataSource.getAllItems(category);
+        ItemAdapterRecyclerView adapterRecyclerView = new ItemAdapterRecyclerView(this, listFromDb);
+        recyclerView.setAdapter(adapterRecyclerView);
     }
 
     @Override
@@ -149,6 +179,13 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "File not existing", Toast.LENGTH_SHORT).show();
                 }
                 return true;
+            case R.id.action_all_items:
+                displayItemsDB(null);
+                return true;
+            case R.id.action_choose_category:
+                mDrawerLayout.openDrawer(mDrawerList);
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -168,7 +205,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
     /* Checks if external storage is available for read and write */
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
