@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.ayannah.jcc.datapersistencyapp.model.DataItem;
@@ -44,27 +45,39 @@ public class DataSource {
     }
 
     public void seedDatabase(List<DataItem> dataItemList) {
-        long itemCount = getDataItemListCount();
-        if (itemCount == 0) {
+//        long itemCount = getDataItemListCount();
+//        if (itemCount == 0) {
+        try {
+            mDatabase.beginTransaction();
             for (DataItem item :
                     dataItemList) {
                 try {
+                    if (item.getItemName().equals("House Salad")){
+                        throw new Exception("Your message here!");
+                    }
                     createItem(item);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
-            Toast.makeText(mContext, "Data saved to local database", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(mContext, "Data already inserted", Toast.LENGTH_LONG).show();
+            mDatabase.setTransactionSuccessful();
+            mDatabase.endTransaction();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.i("DATASOURCE","seedDatabase: " + e.getMessage());
+            mDatabase.endTransaction();
         }
+//            Toast.makeText(mContext, "Data saved to local database", Toast.LENGTH_LONG).show();
+////        } else {
+////            Toast.makeText(mContext, "Data already inserted", Toast.LENGTH_LONG).show();
+////        }
     }
 
     public String[] getCategoriesDB() {
         ArrayList<String> categories = new ArrayList<>();
         String[] category = {ItemsTable.COLUMN_CATEGORY};
-        Cursor cursor = mDatabase.query(true,ItemsTable.TABLE_ITEMS,category,
-                null, null, null, null, ItemsTable.COLUMN_CATEGORY + " DESC",null);
+        Cursor cursor = mDatabase.query(true, ItemsTable.TABLE_ITEMS, category,
+                null, null, null, null, ItemsTable.COLUMN_CATEGORY + " DESC", null);
 
         while (cursor.moveToNext()) {
             categories.add(cursor.getString(cursor.getColumnIndex(ItemsTable.COLUMN_CATEGORY)));
